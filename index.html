@@ -6,39 +6,175 @@
 
   <title>MCSMA Documents Directory</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --brand: #004a99;
+      --brand-dark: #003b7a;
+      --action: #28a745;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #667085;
+      --border: #dbe3ec;
+      --shadow: 0 10px 30px rgba(21, 48, 78, 0.08);
+    }
+
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      padding: 40px 20px;
-      font-family: Arial, sans-serif;
-      background: #f5f8fc;
-      color: #183153;
+      font-family: "Open Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
+    button,
+    input,
+    select {
+      font: inherit;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
+    .page-shell {
+      min-height: 100vh;
     }
 
-    .subtitle {
-      text-align: center;
-      color: #667085;
-      margin-bottom: 35px;
+    .hero {
+      background: linear-gradient(135deg, #004a99 0%, #003b7a 100%);
+      color: white;
+      padding: 34px 24px 30px;
+      position: relative;
+      overflow: hidden;
     }
 
-    #status {
-      text-align: center;
-      padding: 25px;
-      font-size: 18px;
+    .hero::after {
+      content: "♫";
+      position: absolute;
+      right: 5%;
+      top: -25px;
+      font-size: 170px;
+      opacity: 0.07;
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy h1 {
+      font-family: "Lato", sans-serif;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      margin: 0 0 10px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      font-size: clamp(14px, 2vw, 18px);
+      opacity: 0.92;
+    }
+
+    .admin-btn {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      padding: 11px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      backdrop-filter: blur(3px);
+    }
+
+    .admin-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .controls-wrap {
+      max-width: 1200px;
+      margin: -1px auto 0;
+      padding: 28px 24px 0;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .search-box,
+    .category-select {
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 15px;
+      outline: none;
+      box-shadow: 0 4px 16px rgba(20, 47, 80, 0.05);
+    }
+
+    .search-box:focus,
+    .category-select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(0, 74, 153, 0.1);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 15px;
+    }
+
+    .filter-pill {
+      border: none;
+      background: #eaf0f7;
+      color: #274563;
+      border-radius: 999px;
+      padding: 8px 13px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .filter-pill:hover {
+      background: #dfe8f2;
+    }
+
+    .filter-pill.active {
+      background: var(--brand);
+      color: white;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin: 18px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .directory {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 24px 50px;
     }
 
     #docs {
@@ -48,189 +184,494 @@
     }
 
     .card {
-      background: white;
+      background: var(--card);
+      border: 1px solid rgba(219, 227, 236, 0.9);
+      border-radius: 16px;
       padding: 22px;
-      border-radius: 12px;
-      box-shadow: 0 5px 18px rgba(0,0,0,.08);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 240px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .card h2 {
-      margin-top: 0;
-      font-size: 19px;
-      color: #004a99;
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(21, 48, 78, 0.11);
+    }
+
+    .card-title {
+      font-family: "Lato", sans-serif;
+      margin: 0 0 8px;
+      color: #063d79;
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 900;
     }
 
     .description {
-      line-height: 1.5;
-      color: #475467;
+      margin: 0;
+      color: #4f5f70;
+      line-height: 1.55;
+      font-size: 14px;
     }
 
     .tags {
-      margin: 14px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 15px;
+      margin-bottom: 18px;
     }
 
     .tag {
       display: inline-block;
-      background: #e8f1fb;
-      color: #004a99;
       border-radius: 999px;
       padding: 5px 10px;
-      margin: 2px;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
+      background: #eaf1f9;
+      color: #13518d;
     }
 
-    .button {
-      display: inline-block;
-      margin: 4px 4px 0 0;
-      padding: 9px 14px;
-      background: #004a99;
-      color: white;
+    .tag[data-tag="Teachers"] {
+      background: #d9f0ff;
+      color: #0063a6;
+    }
+
+    .tag[data-tag="Directors"] {
+      background: #dcf5df;
+      color: #20733c;
+    }
+
+    .tag[data-tag="Solo Festival"] {
+      background: #ffe0df;
+      color: #a63131;
+    }
+
+    .tag[data-tag="Board Members"] {
+      background: #fff0be;
+      color: #7b5a00;
+    }
+
+    .tag[data-tag="Ensemble Coordinators"] {
+      background: #e8defa;
+      color: #6541a7;
+    }
+
+    .tag[data-tag="General"] {
+      background: #edf0f4;
+      color: #566575;
+    }
+
+    .card-actions {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .doc-btn {
       text-decoration: none;
-      border-radius: 7px;
-      font-size: 13px;
-      font-weight: bold;
+      background: var(--brand);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.15s ease, transform 0.15s ease;
     }
 
-    @media (max-width: 700px) {
+    .doc-btn:hover {
+      background: var(--brand-dark);
+      transform: translateY(-1px);
+    }
+
+    .doc-btn::before {
+      content: "↗";
+      font-size: 14px;
+    }
+
+    .status-box {
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--muted);
+      background: white;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 0 24px 28px;
+      color: #8793a0;
+      font-size: 12px;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        align-items: flex-start;
+      }
+
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+
       #docs {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 26px 18px 24px;
+      }
+
+      .hero-inner {
+        flex-direction: column;
+      }
+
+      .admin-btn {
+        align-self: flex-end;
+      }
+
+      .controls-wrap,
+      .directory {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .card {
+        padding: 18px;
+        min-height: auto;
+      }
+
+      .card-title {
+        font-size: 19px;
+      }
+
+      .meta-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="page-shell">
 
-  <div class="container">
+    <header class="hero">
+      <div class="hero-inner">
 
-    <h1>MCSMA DOCUMENTS DIRECTORY</h1>
+        <div class="hero-copy">
+          <h1>MCSMA Documents Directory</h1>
+          <p>Important forms, resources, and information for MCSMA members.</p>
+        </div>
 
-    <div class="subtitle">
-      GitHub ↔ Google Sheet connection test
-    </div>
+        <button class="admin-btn" id="adminBtn" type="button">
+          ⚙ Admin
+        </button>
 
-    <div id="status">
-      Connecting to MCSMA documents…
-    </div>
+      </div>
+    </header>
 
-    <div id="docs"></div>
+    <section class="controls-wrap">
+
+      <div class="search-row">
+        <input
+          id="searchInput"
+          class="search-box"
+          type="search"
+          placeholder="Search documents, descriptions, or tags..."
+        >
+
+        <select id="categorySelect" class="category-select">
+          <option value="">All Categories</option>
+        </select>
+      </div>
+
+      <div id="filterRow" class="filter-row"></div>
+
+      <div class="meta-row">
+        <div id="resultsCount">Loading documents...</div>
+        <div>Sorted alphabetically A–Z</div>
+      </div>
+
+    </section>
+
+    <main class="directory">
+
+      <div id="status" class="status-box">
+        Loading MCSMA documents...
+      </div>
+
+      <div id="docs"></div>
+
+    </main>
+
+    <footer class="footer">
+      Monroe County School Music Association
+    </footer>
 
   </div>
 
-<script>
+  <script>
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycbx6zKGU-z1aFXEm1tpkPlx-qcVcscc8_4yEkPgSDDHUGQHFwfp83-eSY33b3kt4XnQ_QA/exec';
 
-const API_URL =
-  'https://script.google.com/macros/s/AKfycbx6zKGU-z1aFXEm1tpkPlx-qcVcscc8_4yEkPgSDDHUGQHFwfp83-eSY33b3kt4XnQ_QA/exec';
+    let allDocuments = [];
+    let activeTag = '';
 
-async function loadDocuments() {
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const filterRow = document.getElementById('filterRow');
+    const docsContainer = document.getElementById('docs');
+    const statusBox = document.getElementById('status');
+    const resultsCount = document.getElementById('resultsCount');
+    const adminBtn = document.getElementById('adminBtn');
 
-  const status = document.getElementById('status');
-  const container = document.getElementById('docs');
+    async function loadDocuments() {
+      try {
+        const response = await fetch(API_URL + '?action=documents');
 
-  try {
+        if (!response.ok) {
+          throw new Error('Server returned ' + response.status);
+        }
 
-    const response = await fetch(
-      API_URL + '?action=documents'
-    );
+        const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(
-        'Server returned ' + response.status
-      );
+        if (!data.success) {
+          throw new Error(data.error || 'The API returned an error.');
+        }
+
+        allDocuments = Array.isArray(data.documents)
+          ? data.documents
+          : [];
+
+        allDocuments.sort((a, b) =>
+          String(a.name || '').localeCompare(
+            String(b.name || ''),
+            undefined,
+            { sensitivity: 'base' }
+          )
+        );
+
+        buildFilters();
+        renderDocuments();
+
+      } catch (error) {
+        console.error(error);
+
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = `
+          <strong>Unable to load documents.</strong><br><br>
+          ${escapeHtml(error.message)}
+        `;
+
+        resultsCount.textContent = 'Unable to load directory';
+      }
     }
 
-    const data = await response.json();
+    function buildFilters() {
+      const tags = new Set();
 
-    if (!data.success) {
-      throw new Error(
-        data.error || 'The API returned an error.'
-      );
-    }
-
-    const documents = data.documents || [];
-
-    documents.sort((a, b) =>
-      a.name.localeCompare(
-        b.name,
-        undefined,
-        { sensitivity: 'base' }
-      )
-    );
-
-    if (!documents.length) {
-      status.textContent =
-        'Connected successfully, but no documents were found.';
-      return;
-    }
-
-    status.style.display = 'none';
-
-    documents.forEach(doc => {
-
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const title = document.createElement('h2');
-      title.textContent = doc.name;
-
-      const description = document.createElement('div');
-      description.className = 'description';
-      description.textContent = doc.description || '';
-
-      const tags = document.createElement('div');
-      tags.className = 'tags';
-
-      (doc.tags || []).forEach(tagText => {
-
-        const tag = document.createElement('span');
-        tag.className = 'tag';
-        tag.textContent = tagText;
-
-        tags.appendChild(tag);
-
+      allDocuments.forEach(doc => {
+        (doc.tags || []).forEach(tag => tags.add(tag));
       });
 
-      const buttons = document.createElement('div');
+      const sortedTags = Array.from(tags).sort((a, b) =>
+        a.localeCompare(b)
+      );
 
-      (doc.buttons || []).forEach(buttonData => {
+      categorySelect.innerHTML =
+        '<option value="">All Categories</option>';
 
-        const button = document.createElement('a');
-
-        button.className = 'button';
-        button.textContent = buttonData.label;
-        button.href = buttonData.url;
-        button.target = '_blank';
-        button.rel = 'noopener noreferrer';
-
-        buttons.appendChild(button);
-
+      sortedTags.forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag;
+        option.textContent = tag;
+        categorySelect.appendChild(option);
       });
 
-      card.appendChild(title);
-      card.appendChild(description);
-      card.appendChild(tags);
-      card.appendChild(buttons);
+      filterRow.innerHTML = '';
 
-      container.appendChild(card);
+      const allButton = createFilterPill(
+        '',
+        'All (' + allDocuments.length + ')'
+      );
 
+      filterRow.appendChild(allButton);
+
+      sortedTags.forEach(tag => {
+        const count = allDocuments.filter(doc =>
+          (doc.tags || []).includes(tag)
+        ).length;
+
+        filterRow.appendChild(
+          createFilterPill(tag, tag + ' (' + count + ')')
+        );
+      });
+
+      updateFilterStyles();
+    }
+
+    function createFilterPill(tag, label) {
+      const button = document.createElement('button');
+
+      button.type = 'button';
+      button.className = 'filter-pill';
+      button.dataset.tag = tag;
+      button.textContent = label;
+
+      button.addEventListener('click', () => {
+        activeTag = tag;
+        categorySelect.value = tag;
+        updateFilterStyles();
+        renderDocuments();
+      });
+
+      return button;
+    }
+
+    function updateFilterStyles() {
+      document.querySelectorAll('.filter-pill').forEach(button => {
+        button.classList.toggle(
+          'active',
+          button.dataset.tag === activeTag
+        );
+      });
+    }
+
+    function getFilteredDocuments() {
+      const query = searchInput.value
+        .trim()
+        .toLowerCase();
+
+      return allDocuments.filter(doc => {
+        const tags = doc.tags || [];
+
+        const tagMatch =
+          !activeTag || tags.includes(activeTag);
+
+        const searchableText = [
+          doc.name || '',
+          doc.description || '',
+          ...tags
+        ]
+          .join(' ')
+          .toLowerCase();
+
+        const searchMatch =
+          !query || searchableText.includes(query);
+
+        return tagMatch && searchMatch;
+      });
+    }
+
+    function renderDocuments() {
+      const documents = getFilteredDocuments();
+
+      statusBox.style.display = 'none';
+      docsContainer.innerHTML = '';
+
+      resultsCount.textContent =
+        'Showing ' +
+        documents.length +
+        ' of ' +
+        allDocuments.length +
+        ' documents';
+
+      if (!documents.length) {
+        docsContainer.innerHTML = `
+          <div class="status-box empty-state">
+            No documents match your current search or filter.
+          </div>
+        `;
+        return;
+      }
+
+      documents.forEach(doc => {
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        const title = document.createElement('h2');
+        title.className = 'card-title';
+        title.textContent = doc.name || '';
+
+        const description = document.createElement('p');
+        description.className = 'description';
+        description.textContent = doc.description || '';
+
+        const tags = document.createElement('div');
+        tags.className = 'tags';
+
+        (doc.tags || []).forEach(tagText => {
+          const tag = document.createElement('span');
+          tag.className = 'tag';
+          tag.dataset.tag = tagText;
+          tag.textContent = tagText;
+          tags.appendChild(tag);
+        });
+
+        const actions = document.createElement('div');
+        actions.className = 'card-actions';
+
+        (doc.buttons || []).forEach(buttonData => {
+          if (!buttonData || !buttonData.url) return;
+
+          const button = document.createElement('a');
+          button.className = 'doc-btn';
+          button.href = buttonData.url;
+          button.target = '_blank';
+          button.rel = 'noopener noreferrer';
+          button.textContent =
+            buttonData.label || 'Open Link';
+
+          actions.appendChild(button);
+        });
+
+        card.appendChild(title);
+        card.appendChild(description);
+        card.appendChild(tags);
+        card.appendChild(actions);
+
+        docsContainer.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener('input', renderDocuments);
+
+    categorySelect.addEventListener('change', () => {
+      activeTag = categorySelect.value;
+      updateFilterStyles();
+      renderDocuments();
     });
 
-  } catch (error) {
+    adminBtn.addEventListener('click', () => {
+      alert(
+        'Admin Mode is the next step. The public directory is working first.'
+      );
+    });
 
-    console.error(error);
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
 
-    status.innerHTML = `
-      <strong>Connection failed.</strong><br><br>
-      ${error.message}
-    `;
-
-  }
-}
-
-loadDocuments();
-
-</script>
+    loadDocuments();
+  </script>
 
 </body>
 </html>
