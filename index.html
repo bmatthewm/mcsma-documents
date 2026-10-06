@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MCSMA Documents Directory</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      background: #f5f8fc;
+      color: #183153;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 35px;
+    }
+
+    #status {
+      text-align: center;
+      padding: 25px;
+      font-size: 18px;
+    }
+
+    #docs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 19px;
+      color: #004a99;
+    }
+
+    .description {
+      line-height: 1.5;
+      color: #475467;
+    }
+
+    .tags {
+      margin: 14px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e8f1fb;
+      color: #004a99;
+      border-radius: 999px;
+      padding: 5px 10px;
+      margin: 2px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 4px 4px 0 0;
+      padding: 9px 14px;
+      background: #004a99;
+      color: white;
+      text-decoration: none;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+      #docs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>MCSMA DOCUMENTS DIRECTORY</h1>
+
+    <div class="subtitle">
+      GitHub ↔ Google Sheet connection test
+    </div>
+
+    <div id="status">
+      Connecting to MCSMA documents…
+    </div>
+
+    <div id="docs"></div>
+
+  </div>
+
+<script>
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycbx6zKGU-z1aFXEm1tpkPlx-qcVcscc8_4yEkPgSDDHUGQHFwfp83-eSY33b3kt4XnQ_QA/exec';
+
+async function loadDocuments() {
+
+  const status = document.getElementById('status');
+  const container = document.getElementById('docs');
+
+  try {
+
+    const response = await fetch(
+      API_URL + '?action=documents'
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        'Server returned ' + response.status
+      );
+    }
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(
+        data.error || 'The API returned an error.'
+      );
+    }
+
+    const documents = data.documents || [];
+
+    documents.sort((a, b) =>
+      a.name.localeCompare(
+        b.name,
+        undefined,
+        { sensitivity: 'base' }
+      )
+    );
+
+    if (!documents.length) {
+      status.textContent =
+        'Connected successfully, but no documents were found.';
+      return;
+    }
+
+    status.style.display = 'none';
+
+    documents.forEach(doc => {
+
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const title = document.createElement('h2');
+      title.textContent = doc.name;
+
+      const description = document.createElement('div');
+      description.className = 'description';
+      description.textContent = doc.description || '';
+
+      const tags = document.createElement('div');
+      tags.className = 'tags';
+
+      (doc.tags || []).forEach(tagText => {
+
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = tagText;
+
+        tags.appendChild(tag);
+
+      });
+
+      const buttons = document.createElement('div');
+
+      (doc.buttons || []).forEach(buttonData => {
+
+        const button = document.createElement('a');
+
+        button.className = 'button';
+        button.textContent = buttonData.label;
+        button.href = buttonData.url;
+        button.target = '_blank';
+        button.rel = 'noopener noreferrer';
+
+        buttons.appendChild(button);
+
+      });
+
+      card.appendChild(title);
+      card.appendChild(description);
+      card.appendChild(tags);
+      card.appendChild(buttons);
+
+      container.appendChild(card);
+
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    status.innerHTML = `
+      <strong>Connection failed.</strong><br><br>
+      ${error.message}
+    `;
+
+  }
+}
+
+loadDocuments();
+
+</script>
+
+</body>
+</html>
