@@ -1,567 +1,2182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>MCSMA Documents Directory</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>
+    MCSMA Documents Directory
+  </title>
 
-  <style>
-    :root {
-      --brand: #004a99;
-      --brand-dark: #003b7a;
-      --action: #28a745;
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #667085;
-      --border: #dbe3ec;
-      --shadow: 0 10px 30px rgba(21, 48, 78, 0.08);
-    }
 
-    * {
-      box-sizing: border-box;
-    }
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
 
-    body {
-      margin: 0;
-      font-family: "Open Sans", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
 
-    .page-shell {
-      min-height: 100vh;
-    }
 
-    .hero {
-      background: linear-gradient(135deg, #004a99 0%, #003b7a 100%);
-      color: white;
-      padding: 34px 24px 30px;
-      position: relative;
-      overflow: hidden;
-    }
+<style>
 
-    .hero::after {
-      content: "♫";
-      position: absolute;
-      right: 5%;
-      top: -25px;
-      font-size: 170px;
-      opacity: 0.07;
-      transform: rotate(-8deg);
-      pointer-events: none;
-    }
+:root {
+  --brand: #004a99;
+  --brand-dark: #003b7a;
+  --brand-light: #eaf1f9;
+  --action: #28a745;
 
-    .hero-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
+  --bg: #f4f7fb;
+  --card: #ffffff;
 
-    .hero-copy h1 {
-      font-family: "Lato", sans-serif;
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1;
-      margin: 0 0 10px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-    }
+  --text: #1f2937;
+  --muted: #667085;
 
-    .hero-copy p {
-      margin: 0;
-      font-size: clamp(14px, 2vw, 18px);
-      opacity: 0.92;
-    }
+  --border: #dbe3ec;
 
-    .admin-btn {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-      padding: 11px 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
-      backdrop-filter: blur(3px);
-    }
+  --danger: #c62828;
+  --danger-bg: #fff0f0;
 
-    .admin-btn:hover {
-      background: rgba(255, 255, 255, 0.16);
-    }
+  --shadow:
+    0 10px 30px
+    rgba(21, 48, 78, 0.08);
+}
 
-    .controls-wrap {
-      max-width: 1200px;
-      margin: -1px auto 0;
-      padding: 28px 24px 0;
-    }
 
-    .search-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 240px;
-      gap: 14px;
-      align-items: center;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .search-box,
-    .category-select {
-      width: 100%;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 13px 15px;
-      outline: none;
-      box-shadow: 0 4px 16px rgba(20, 47, 80, 0.05);
-    }
 
-    .search-box:focus,
-    .category-select:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(0, 74, 153, 0.1);
-    }
+body {
+  margin: 0;
 
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 15px;
-    }
+  font-family:
+    "Open Sans",
+    sans-serif;
 
-    .filter-pill {
-      border: none;
-      background: #eaf0f7;
-      color: #274563;
-      border-radius: 999px;
-      padding: 8px 13px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
-    }
+  background:
+    var(--bg);
 
-    .filter-pill:hover {
-      background: #dfe8f2;
-    }
+  color:
+    var(--text);
+}
 
-    .filter-pill.active {
-      background: var(--brand);
-      color: white;
-    }
 
-    .meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin: 18px 0 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
 
-    .directory {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 18px 24px 50px;
-    }
 
-    #docs {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
+button {
+  cursor: pointer;
+}
 
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(219, 227, 236, 0.9);
-      border-radius: 16px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      min-height: 240px;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
 
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(21, 48, 78, 0.11);
-    }
+body.modal-open {
+  overflow: hidden;
+}
 
-    .card-title {
-      font-family: "Lato", sans-serif;
-      margin: 0 0 8px;
-      color: #063d79;
-      font-size: 21px;
-      line-height: 1.2;
-      font-weight: 900;
-    }
 
-    .description {
-      margin: 0;
-      color: #4f5f70;
-      line-height: 1.55;
-      font-size: 14px;
-    }
+/* ==================================
+   HEADER
+================================== */
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 15px;
-      margin-bottom: 18px;
-    }
+.hero {
+  background:
+    linear-gradient(
+      135deg,
+      #07549f 0%,
+      #003b7a 100%
+    );
 
-    .tag {
-      display: inline-block;
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 11px;
-      font-weight: 700;
-      background: #eaf1f9;
-      color: #13518d;
-    }
+  color: white;
 
-    .tag[data-tag="Teachers"] {
-      background: #d9f0ff;
-      color: #0063a6;
-    }
+  padding:
+    30px 38px;
 
-    .tag[data-tag="Directors"] {
-      background: #dcf5df;
-      color: #20733c;
-    }
+  position: relative;
 
-    .tag[data-tag="Solo Festival"] {
-      background: #ffe0df;
-      color: #a63131;
-    }
+  overflow: hidden;
+}
 
-    .tag[data-tag="Board Members"] {
-      background: #fff0be;
-      color: #7b5a00;
-    }
 
-    .tag[data-tag="Ensemble Coordinators"] {
-      background: #e8defa;
-      color: #6541a7;
-    }
+.hero::after {
+  content: "♫";
 
-    .tag[data-tag="General"] {
-      background: #edf0f4;
-      color: #566575;
-    }
+  position: absolute;
 
-    .card-actions {
-      margin-top: auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
+  right: 7%;
+  bottom: -70px;
 
-    .doc-btn {
-      text-decoration: none;
-      background: var(--brand);
-      color: white;
-      padding: 10px 14px;
-      border-radius: 9px;
-      font-size: 12px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: background 0.15s ease, transform 0.15s ease;
-    }
+  font-size: 170px;
 
-    .doc-btn:hover {
-      background: var(--brand-dark);
-      transform: translateY(-1px);
-    }
+  opacity: 0.07;
 
-    .doc-btn::before {
-      content: "↗";
-      font-size: 14px;
-    }
+  pointer-events: none;
+}
 
-    .status-box {
-      text-align: center;
-      padding: 36px 16px;
-      color: var(--muted);
-      background: white;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
 
-    .empty-state {
-      grid-column: 1 / -1;
-    }
+.hero-inner {
+  max-width: 1200px;
 
-    .footer {
-      text-align: center;
-      padding: 0 24px 28px;
-      color: #8793a0;
-      font-size: 12px;
-    }
+  margin: 0 auto;
 
-    @media (max-width: 800px) {
-      .hero-inner {
-        align-items: flex-start;
-      }
+  display: flex;
 
-      .search-row {
-        grid-template-columns: 1fr;
-      }
+  justify-content:
+    space-between;
 
-      #docs {
-        grid-template-columns: 1fr;
-      }
-    }
+  align-items: center;
 
-    @media (max-width: 560px) {
-      .hero {
-        padding: 26px 18px 24px;
-      }
+  gap: 20px;
 
-      .hero-inner {
-        flex-direction: column;
-      }
+  position: relative;
 
-      .admin-btn {
-        align-self: flex-end;
-      }
+  z-index: 1;
+}
 
-      .controls-wrap,
-      .directory {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
 
-      .card {
-        padding: 18px;
-        min-height: auto;
-      }
+.hero h1 {
+  margin: 0 0 6px;
 
-      .card-title {
-        font-size: 19px;
-      }
+  font-family:
+    "Lato",
+    sans-serif;
 
-      .meta-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+  font-size:
+    clamp(
+      32px,
+      4.5vw,
+      54px
+    );
+
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+
+.hero p {
+  margin: 0;
+
+  font-size:
+    clamp(
+      14px,
+      2vw,
+      17px
+    );
+
+  opacity: 0.94;
+}
+
+
+.admin-btn {
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.45
+    );
+
+  color: white;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+  border-radius: 10px;
+
+  padding:
+    10px 16px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+.admin-btn:hover {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.16
+    );
+}
+
+
+.admin-btn.active {
+  background:
+    #ffffff;
+
+  color:
+    var(--brand);
+}
+
+
+/* ==================================
+   CONTROLS
+================================== */
+
+.controls-wrap {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding:
+    28px
+    24px
+    0;
+}
+
+
+.search-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    240px;
+
+  gap: 14px;
+}
+
+
+.search-box,
+.category-select {
+  width: 100%;
+
+  background: white;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 12px;
+
+  padding:
+    13px 15px;
+
+  outline: none;
+
+  box-shadow:
+    0 4px 16px
+    rgba(
+      20,
+      47,
+      80,
+      0.05
+    );
+}
+
+
+.search-box:focus,
+.category-select:focus {
+  border-color:
+    var(--brand);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      0,
+      74,
+      153,
+      0.10
+    );
+}
+
+
+.filter-row {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-top: 15px;
+}
+
+
+.filter-pill {
+  border: none;
+
+  background:
+    #eaf0f7;
+
+  color:
+    #274563;
+
+  border-radius:
+    999px;
+
+  padding:
+    8px 13px;
+
+  font-size:
+    12px;
+
+  font-weight: 700;
+}
+
+
+.filter-pill:hover {
+  background:
+    #dfe8f2;
+}
+
+
+.filter-pill.active {
+  color: white;
+
+  background:
+    var(--brand);
+}
+
+
+.meta-row {
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin:
+    18px 0
+    8px;
+
+  color:
+    var(--muted);
+
+  font-size: 12px;
+}
+
+
+/* ==================================
+   ADMIN TOOLBAR
+================================== */
+
+.admin-toolbar {
+  display: none;
+
+  max-width: 1200px;
+
+  margin:
+    18px auto
+    0;
+
+  padding:
+    0 24px;
+}
+
+
+.admin-toolbar.visible {
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.admin-status {
+  font-size: 13px;
+
+  color:
+    #1f6638;
+
+  font-weight: 700;
+}
+
+
+.add-btn {
+  border: none;
+
+  background:
+    var(--action);
+
+  color: white;
+
+  border-radius: 9px;
+
+  padding:
+    10px 15px;
+
+  font-weight: 700;
+}
+
+
+.add-btn:hover {
+  filter:
+    brightness(0.95);
+}
+
+
+/* ==================================
+   DIRECTORY
+================================== */
+
+.directory {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding:
+    18px
+    24px
+    50px;
+}
+
+
+#docs {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 20px;
+}
+
+
+.card {
+  background:
+    var(--card);
+
+  border:
+    1px solid
+    rgba(
+      219,
+      227,
+      236,
+      0.95
+    );
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  box-shadow:
+    var(--shadow);
+
+  display: flex;
+
+  flex-direction:
+    column;
+
+  min-height: 240px;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+
+  position: relative;
+}
+
+
+.card:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 16px 34px
+    rgba(
+      21,
+      48,
+      78,
+      0.11
+    );
+}
+
+
+.card-title {
+  font-family:
+    "Lato",
+    sans-serif;
+
+  margin:
+    0 0 8px;
+
+  color:
+    #063d79;
+
+  font-size:
+    20px;
+
+  line-height: 1.2;
+
+  font-weight: 900;
+}
+
+
+.description {
+  margin: 0;
+
+  color:
+    #4f5f70;
+
+  line-height: 1.55;
+
+  font-size: 13px;
+}
+
+
+.tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin:
+    15px 0
+    18px;
+}
+
+
+.tag {
+  display:
+    inline-block;
+
+  border-radius:
+    999px;
+
+  padding:
+    5px 10px;
+
+  font-size:
+    10px;
+
+  font-weight: 700;
+
+  background:
+    #eaf1f9;
+
+  color:
+    #13518d;
+}
+
+
+.tag[data-tag="Teachers"] {
+  background:
+    #d9f0ff;
+
+  color:
+    #0063a6;
+}
+
+
+.tag[data-tag="Directors"] {
+  background:
+    #dcf5df;
+
+  color:
+    #20733c;
+}
+
+
+.tag[data-tag="Solo Festival"] {
+  background:
+    #ffe0df;
+
+  color:
+    #a63131;
+}
+
+
+.tag[data-tag="Board Members"] {
+  background:
+    #fff0be;
+
+  color:
+    #7b5a00;
+}
+
+
+.tag[data-tag="Ensemble Coordinators"] {
+  background:
+    #e8defa;
+
+  color:
+    #6541a7;
+}
+
+
+.tag[data-tag="General"] {
+  background:
+    #edf0f4;
+
+  color:
+    #566575;
+}
+
+
+.card-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: auto;
+}
+
+
+.doc-btn {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap: 6px;
+
+  text-decoration:
+    none;
+
+  background:
+    var(--brand);
+
+  color: white;
+
+  border-radius: 8px;
+
+  padding:
+    9px 13px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+.doc-btn:hover {
+  background:
+    var(--brand-dark);
+}
+
+
+.doc-btn::before {
+  content: "↗";
+}
+
+
+/* ==================================
+   ADMIN CARD BUTTONS
+================================== */
+
+.admin-card-controls {
+  display: flex;
+
+  gap: 7px;
+
+  margin-top: 12px;
+
+  padding-top: 12px;
+
+  border-top:
+    1px solid
+    #edf0f4;
+}
+
+
+.edit-card-btn,
+.delete-card-btn {
+  border: none;
+
+  border-radius: 7px;
+
+  padding:
+    7px 11px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+.edit-card-btn {
+  background:
+    #e7f0fa;
+
+  color:
+    var(--brand);
+}
+
+
+.edit-card-btn:hover {
+  background:
+    #d9e8f7;
+}
+
+
+.delete-card-btn {
+  background:
+    var(--danger-bg);
+
+  color:
+    var(--danger);
+}
+
+
+.delete-card-btn:hover {
+  background:
+    #ffe0e0;
+}
+
+
+/* ==================================
+   STATUS
+================================== */
+
+.status-box {
+  text-align:
+    center;
+
+  padding:
+    36px 16px;
+
+  color:
+    var(--muted);
+
+  background:
+    white;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius: 14px;
+}
+
+
+.empty-state {
+  grid-column:
+    1 / -1;
+}
+
+
+/* ==================================
+   MODALS
+================================== */
+
+.modal-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(
+      12,
+      27,
+      44,
+      0.55
+    );
+
+  display: none;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding: 20px;
+
+  z-index: 999;
+}
+
+
+.modal-backdrop.visible {
+  display: flex;
+}
+
+
+.modal {
+  background: white;
+
+  width: min(
+    620px,
+    100%
+  );
+
+  max-height:
+    calc(
+      100vh - 40px
+    );
+
+  overflow-y: auto;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 24px 80px
+    rgba(
+      0,
+      0,
+      0,
+      0.25
+    );
+
+  padding: 24px;
+}
+
+
+.login-modal {
+  width:
+    min(
+      420px,
+      100%
+    );
+}
+
+
+.modal-header {
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    flex-start;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
+
+
+.modal-title {
+  margin: 0;
+
+  font-family:
+    "Lato",
+    sans-serif;
+
+  color:
+    #063d79;
+
+  font-size: 24px;
+}
+
+
+.close-btn {
+  border: none;
+
+  background:
+    transparent;
+
+  font-size: 25px;
+
+  color:
+    #6b7785;
+
+  line-height: 1;
+}
+
+
+.form-group {
+  margin-bottom: 17px;
+}
+
+
+.form-group label {
+  display: block;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  margin-bottom: 6px;
+
+  color:
+    #364657;
+}
+
+
+.form-control {
+  width: 100%;
+
+  border:
+    1px solid
+    #cad5e0;
+
+  border-radius: 9px;
+
+  padding:
+    10px 11px;
+
+  outline: none;
+}
+
+
+.form-control:focus {
+  border-color:
+    var(--brand);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      0,
+      74,
+      153,
+      0.08
+    );
+}
+
+
+textarea.form-control {
+  min-height: 100px;
+
+  resize: vertical;
+}
+
+
+.tag-checkbox-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 8px;
+}
+
+
+.tag-option {
+  display: flex;
+
+  align-items:
+    center;
+
+  gap: 8px;
+
+  background:
+    #f7f9fc;
+
+  border:
+    1px solid
+    #e3e8ee;
+
+  border-radius: 8px;
+
+  padding:
+    8px 10px;
+
+  font-size: 12px;
+}
+
+
+.buttons-editor {
+  display: flex;
+
+  flex-direction:
+    column;
+
+  gap: 10px;
+}
+
+
+.button-editor-row {
+  display: grid;
+
+  grid-template-columns:
+    150px
+    minmax(0, 1fr)
+    36px;
+
+  gap: 8px;
+
+  align-items: center;
+}
+
+
+.remove-link-btn {
+  width: 36px;
+
+  height: 36px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background:
+    var(--danger-bg);
+
+  color:
+    var(--danger);
+
+  font-weight: 900;
+}
+
+
+.add-link-btn {
+  border:
+    1px dashed
+    #9db6d0;
+
+  background:
+    #f4f8fc;
+
+  color:
+    var(--brand);
+
+  border-radius: 8px;
+
+  padding:
+    9px 12px;
+
+  font-weight: 700;
+}
+
+
+.modal-actions {
+  display: flex;
+
+  justify-content:
+    flex-end;
+
+  gap: 9px;
+
+  margin-top: 22px;
+}
+
+
+.secondary-btn {
+  border:
+    1px solid
+    #cdd6df;
+
+  background:
+    white;
+
+  color:
+    #435467;
+
+  border-radius: 8px;
+
+  padding:
+    9px 14px;
+
+  font-weight: 700;
+}
+
+
+.primary-btn {
+  border: none;
+
+  background:
+    var(--brand);
+
+  color: white;
+
+  border-radius: 8px;
+
+  padding:
+    10px 15px;
+
+  font-weight: 700;
+}
+
+
+.primary-btn:hover {
+  background:
+    var(--brand-dark);
+}
+
+
+.form-message {
+  margin-top: 12px;
+
+  font-size: 12px;
+
+  color:
+    var(--danger);
+
+  min-height: 18px;
+}
+
+
+.saving-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 2000;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.68
+    );
+
+  font-weight: 700;
+
+  color:
+    var(--brand);
+}
+
+
+.saving-overlay.visible {
+  display: flex;
+}
+
+
+/* ==================================
+   FOOTER
+================================== */
+
+.footer {
+  text-align: center;
+
+  padding:
+    0 20px
+    26px;
+
+  font-size: 11px;
+
+  color:
+    #8793a0;
+}
+
+
+/* ==================================
+   RESPONSIVE
+================================== */
+
+@media (
+  max-width: 800px
+) {
+
+  .search-row {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  #docs {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+
+@media (
+  max-width: 560px
+) {
+
+  .hero {
+    padding:
+      24px 18px;
+  }
+
+
+  .hero-inner {
+    align-items:
+      flex-start;
+  }
+
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+
+  .controls-wrap,
+  .directory,
+  .admin-toolbar {
+    padding-left:
+      14px;
+
+    padding-right:
+      14px;
+  }
+
+
+  .card {
+    padding: 18px;
+
+    min-height: auto;
+  }
+
+
+  .meta-row {
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+  }
+
+
+  .tag-checkbox-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .button-editor-row {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .remove-link-btn {
+    width: 100%;
+  }
+
+
+  .modal-actions {
+    flex-direction:
+      column-reverse;
+  }
+
+
+  .modal-actions button {
+    width: 100%;
+  }
+
+}
+
+</style>
+
 </head>
 
+
 <body>
-  <div class="page-shell">
 
-    <header class="hero">
-      <div class="hero-inner">
 
-        <div class="hero-copy">
-          <h1>MCSMA Documents Directory</h1>
-          <p>Important forms, resources, and information for MCSMA members.</p>
-        </div>
+<!-- ==================================
+     HEADER
+================================== -->
 
-        <button class="admin-btn" id="adminBtn" type="button">
-          ⚙ Admin
-        </button>
+<header class="hero">
 
-      </div>
-    </header>
+  <div class="hero-inner">
 
-    <section class="controls-wrap">
+    <div>
 
-      <div class="search-row">
-        <input
-          id="searchInput"
-          class="search-box"
-          type="search"
-          placeholder="Search documents, descriptions, or tags..."
-        >
+      <h1>
+        MCSMA Documents Directory
+      </h1>
 
-        <select id="categorySelect" class="category-select">
-          <option value="">All Categories</option>
-        </select>
-      </div>
+      <p>
+        Important forms, resources, and information for MCSMA members.
+      </p>
 
-      <div id="filterRow" class="filter-row"></div>
+    </div>
 
-      <div class="meta-row">
-        <div id="resultsCount">Loading documents...</div>
-        <div>Sorted alphabetically A–Z</div>
-      </div>
 
-    </section>
-
-    <main class="directory">
-
-      <div id="status" class="status-box">
-        Loading MCSMA documents...
-      </div>
-
-      <div id="docs"></div>
-
-    </main>
-
-    <footer class="footer">
-      Monroe County School Music Association
-    </footer>
+    <button
+      id="adminBtn"
+      class="admin-btn"
+      type="button"
+    >
+      ⚙ Admin
+    </button>
 
   </div>
 
-  <script>
-    const API_URL =
-      'https://script.google.com/macros/s/AKfycbx6zKGU-z1aFXEm1tpkPlx-qcVcscc8_4yEkPgSDDHUGQHFwfp83-eSY33b3kt4XnQ_QA/exec';
+</header>
 
-    let allDocuments = [];
-    let activeTag = '';
 
-    const searchInput = document.getElementById('searchInput');
-    const categorySelect = document.getElementById('categorySelect');
-    const filterRow = document.getElementById('filterRow');
-    const docsContainer = document.getElementById('docs');
-    const statusBox = document.getElementById('status');
-    const resultsCount = document.getElementById('resultsCount');
-    const adminBtn = document.getElementById('adminBtn');
 
-    async function loadDocuments() {
-      try {
-        const response = await fetch(API_URL + '?action=documents');
+<!-- ==================================
+     SEARCH / FILTERS
+================================== -->
 
-        if (!response.ok) {
-          throw new Error('Server returned ' + response.status);
-        }
+<section class="controls-wrap">
 
-        const data = await response.json();
+  <div class="search-row">
 
-        if (!data.success) {
-          throw new Error(data.error || 'The API returned an error.');
-        }
+    <input
+      id="searchInput"
+      class="search-box"
+      type="search"
+      placeholder="Search documents, descriptions, or tags..."
+    >
 
-        allDocuments = Array.isArray(data.documents)
-          ? data.documents
-          : [];
 
-        allDocuments.sort((a, b) =>
-          String(a.name || '').localeCompare(
-            String(b.name || ''),
-            undefined,
-            { sensitivity: 'base' }
-          )
-        );
+    <select
+      id="categorySelect"
+      class="category-select"
+    >
 
-        buildFilters();
-        renderDocuments();
+      <option value="">
+        All Categories
+      </option>
 
-      } catch (error) {
-        console.error(error);
+    </select>
 
-        statusBox.style.display = 'block';
-        statusBox.innerHTML = `
-          <strong>Unable to load documents.</strong><br><br>
-          ${escapeHtml(error.message)}
-        `;
+  </div>
 
-        resultsCount.textContent = 'Unable to load directory';
+
+  <div
+    id="filterRow"
+    class="filter-row"
+  ></div>
+
+
+  <div class="meta-row">
+
+    <div id="resultsCount">
+      Loading documents...
+    </div>
+
+    <div>
+      Sorted alphabetically A–Z
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================
+     ADMIN TOOLBAR
+================================== -->
+
+<div
+  id="adminToolbar"
+  class="admin-toolbar"
+>
+
+  <div class="admin-status">
+    ✓ Admin Mode
+  </div>
+
+
+  <button
+    id="addDocumentBtn"
+    class="add-btn"
+    type="button"
+  >
+    + Add Document
+  </button>
+
+</div>
+
+
+
+<!-- ==================================
+     DOCUMENTS
+================================== -->
+
+<main class="directory">
+
+  <div
+    id="status"
+    class="status-box"
+  >
+    Loading MCSMA documents...
+  </div>
+
+
+  <div id="docs"></div>
+
+</main>
+
+
+
+<footer class="footer">
+  Monroe County School Music Association
+</footer>
+
+
+
+<!-- ==================================
+     LOGIN MODAL
+================================== -->
+
+<div
+  id="loginBackdrop"
+  class="modal-backdrop"
+>
+
+  <div class="modal login-modal">
+
+    <div class="modal-header">
+
+      <div>
+        <h2 class="modal-title">
+          Admin Access
+        </h2>
+      </div>
+
+
+      <button
+        id="closeLoginBtn"
+        class="close-btn"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form id="loginForm">
+
+      <div class="form-group">
+
+        <label for="passwordInput">
+          Password
+        </label>
+
+
+        <input
+          id="passwordInput"
+          class="form-control"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
+
+      </div>
+
+
+      <div
+        id="loginMessage"
+        class="form-message"
+      ></div>
+
+
+      <div class="modal-actions">
+
+        <button
+          id="cancelLoginBtn"
+          class="secondary-btn"
+          type="button"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          class="primary-btn"
+          type="submit"
+        >
+          Unlock Admin Mode
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================
+     DOCUMENT EDITOR
+================================== -->
+
+<div
+  id="editorBackdrop"
+  class="modal-backdrop"
+>
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <div>
+        <h2
+          id="editorTitle"
+          class="modal-title"
+        >
+          Add Document
+        </h2>
+      </div>
+
+
+      <button
+        id="closeEditorBtn"
+        class="close-btn"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form id="documentForm">
+
+      <input
+        id="documentId"
+        type="hidden"
+      >
+
+
+      <div class="form-group">
+
+        <label for="documentName">
+          Document Name
+        </label>
+
+
+        <input
+          id="documentName"
+          class="form-control"
+          type="text"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="documentDescription">
+          Description
+        </label>
+
+
+        <textarea
+          id="documentDescription"
+          class="form-control"
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Categories
+        </label>
+
+
+        <div
+          id="tagCheckboxes"
+          class="tag-checkbox-grid"
+        ></div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Buttons / Links
+        </label>
+
+
+        <div
+          id="buttonsEditor"
+          class="buttons-editor"
+        ></div>
+
+
+        <button
+          id="addLinkBtn"
+          class="add-link-btn"
+          type="button"
+        >
+          + Add Button / Link
+        </button>
+
+      </div>
+
+
+      <div
+        id="editorMessage"
+        class="form-message"
+      ></div>
+
+
+      <div class="modal-actions">
+
+        <button
+          id="cancelEditorBtn"
+          class="secondary-btn"
+          type="button"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          class="primary-btn"
+          type="submit"
+        >
+          Save Document
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
+<!-- ==================================
+     SAVING
+================================== -->
+
+<div
+  id="savingOverlay"
+  class="saving-overlay"
+>
+  Saving...
+</div>
+
+
+
+<script>
+
+// ======================================================
+// CONFIG
+// ======================================================
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycbx6zKGU-z1aFXEm1tpkPlx-qcVcscc8_4yEkPgSDDHUGQHFwfp83-eSY33b3kt4XnQ_QA/exec';
+
+
+const DEFAULT_TAGS = [
+  'General',
+  'Teachers',
+  'Directors',
+  'Solo Festival',
+  'Ensemble Coordinators',
+  'Board Members'
+];
+
+
+// ======================================================
+// STATE
+// ======================================================
+
+let allDocuments = [];
+
+let activeTag = '';
+
+let adminToken =
+  sessionStorage.getItem(
+    'mcsmaAdminToken'
+  ) || '';
+
+let adminMode =
+  Boolean(adminToken);
+
+
+// ======================================================
+// ELEMENTS
+// ======================================================
+
+const searchInput =
+  document.getElementById(
+    'searchInput'
+  );
+
+const categorySelect =
+  document.getElementById(
+    'categorySelect'
+  );
+
+const filterRow =
+  document.getElementById(
+    'filterRow'
+  );
+
+const docsContainer =
+  document.getElementById(
+    'docs'
+  );
+
+const statusBox =
+  document.getElementById(
+    'status'
+  );
+
+const resultsCount =
+  document.getElementById(
+    'resultsCount'
+  );
+
+const adminBtn =
+  document.getElementById(
+    'adminBtn'
+  );
+
+const adminToolbar =
+  document.getElementById(
+    'adminToolbar'
+  );
+
+const addDocumentBtn =
+  document.getElementById(
+    'addDocumentBtn'
+  );
+
+
+const loginBackdrop =
+  document.getElementById(
+    'loginBackdrop'
+  );
+
+const loginForm =
+  document.getElementById(
+    'loginForm'
+  );
+
+const passwordInput =
+  document.getElementById(
+    'passwordInput'
+  );
+
+const loginMessage =
+  document.getElementById(
+    'loginMessage'
+  );
+
+
+const editorBackdrop =
+  document.getElementById(
+    'editorBackdrop'
+  );
+
+const documentForm =
+  document.getElementById(
+    'documentForm'
+  );
+
+const editorTitle =
+  document.getElementById(
+    'editorTitle'
+  );
+
+const documentId =
+  document.getElementById(
+    'documentId'
+  );
+
+const documentName =
+  document.getElementById(
+    'documentName'
+  );
+
+const documentDescription =
+  document.getElementById(
+    'documentDescription'
+  );
+
+const tagCheckboxes =
+  document.getElementById(
+    'tagCheckboxes'
+  );
+
+const buttonsEditor =
+  document.getElementById(
+    'buttonsEditor'
+  );
+
+const editorMessage =
+  document.getElementById(
+    'editorMessage'
+  );
+
+
+const savingOverlay =
+  document.getElementById(
+    'savingOverlay'
+  );
+
+
+// ======================================================
+// API
+// ======================================================
+
+async function apiPost(data) {
+
+  const formData =
+    new URLSearchParams();
+
+  formData.set(
+    'payload',
+    JSON.stringify(data)
+  );
+
+
+  const response =
+    await fetch(
+      API_URL,
+      {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
       }
+    );
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      'Server returned ' +
+      response.status
+    );
+
+  }
+
+
+  return await response.json();
+}
+
+
+// ======================================================
+// LOAD DOCUMENTS
+// ======================================================
+
+async function loadDocuments() {
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL +
+        '?action=documents'
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'Server returned ' +
+        response.status
+      );
+
     }
 
-    function buildFilters() {
-      const tags = new Set();
 
-      allDocuments.forEach(doc => {
-        (doc.tags || []).forEach(tag => tags.add(tag));
-      });
+    const data =
+      await response.json();
 
-      const sortedTags = Array.from(tags).sort((a, b) =>
+
+    if (!data.success) {
+
+      throw new Error(
+        data.error ||
+        'The API returned an error.'
+      );
+
+    }
+
+
+    allDocuments =
+      Array.isArray(
+        data.documents
+      )
+        ? data.documents
+        : [];
+
+
+    allDocuments.sort(
+      (a, b) =>
+        String(
+          a.name || ''
+        ).localeCompare(
+          String(
+            b.name || ''
+          ),
+          undefined,
+          {
+            sensitivity:
+              'base'
+          }
+        )
+    );
+
+
+    buildFilters();
+
+    updateAdminDisplay();
+
+    renderDocuments();
+
+
+  } catch (error) {
+
+    console.error(error);
+
+
+    statusBox.style.display =
+      'block';
+
+
+    statusBox.innerHTML =
+      '<strong>Unable to load documents.</strong><br><br>' +
+      escapeHtml(
+        error.message
+      );
+
+
+    resultsCount.textContent =
+      'Unable to load directory';
+
+  }
+
+}
+
+
+// ======================================================
+// FILTERS
+// ======================================================
+
+function getAllTags() {
+
+  const tags =
+    new Set(DEFAULT_TAGS);
+
+
+  allDocuments.forEach(
+    doc => {
+
+      (doc.tags || [])
+        .forEach(
+          tag =>
+            tags.add(tag)
+        );
+
+    }
+  );
+
+
+  return Array
+    .from(tags)
+    .sort(
+      (a, b) =>
         a.localeCompare(b)
-      );
+    );
+}
 
-      categorySelect.innerHTML =
-        '<option value="">All Categories</option>';
 
-      sortedTags.forEach(tag => {
-        const option = document.createElement('option');
-        option.value = tag;
-        option.textContent = tag;
-        categorySelect.appendChild(option);
-      });
+function buildFilters() {
 
-      filterRow.innerHTML = '';
+  const tags =
+    getAllTags();
 
-      const allButton = createFilterPill(
-        '',
-        'All (' + allDocuments.length + ')'
-      );
 
-      filterRow.appendChild(allButton);
+  categorySelect.innerHTML =
+    '<option value="">All Categories</option>';
 
-      sortedTags.forEach(tag => {
-        const count = allDocuments.filter(doc =>
-          (doc.tags || []).includes(tag)
+
+  tags.forEach(
+    tag => {
+
+      const option =
+        document.createElement(
+          'option'
+        );
+
+      option.value =
+        tag;
+
+      option.textContent =
+        tag;
+
+      categorySelect
+        .appendChild(
+          option
+        );
+
+    }
+  );
+
+
+  filterRow.innerHTML =
+    '';
+
+
+  filterRow.appendChild(
+    createFilterPill(
+      '',
+      'All (' +
+      allDocuments.length +
+      ')'
+    )
+  );
+
+
+  tags.forEach(
+    tag => {
+
+      const count =
+        allDocuments.filter(
+          doc =>
+            (
+              doc.tags || []
+            ).includes(tag)
         ).length;
 
-        filterRow.appendChild(
-          createFilterPill(tag, tag + ' (' + count + ')')
-        );
-      });
+
+      if (count === 0) {
+        return;
+      }
+
+
+      filterRow.appendChild(
+        createFilterPill(
+          tag,
+          tag +
+          ' (' +
+          count +
+          ')'
+        )
+      );
+
+    }
+  );
+
+
+  updateFilterStyles();
+}
+
+
+function createFilterPill(
+  tag,
+  label
+) {
+
+  const button =
+    document.createElement(
+      'button'
+    );
+
+
+  button.type =
+    'button';
+
+  button.className =
+    'filter-pill';
+
+  button.dataset.tag =
+    tag;
+
+  button.textContent =
+    label;
+
+
+  button.addEventListener(
+    'click',
+    () => {
+
+      activeTag =
+        tag;
+
+      categorySelect.value =
+        tag;
 
       updateFilterStyles();
+
+      renderDocuments();
+
     }
+  );
 
-    function createFilterPill(tag, label) {
-      const button = document.createElement('button');
 
-      button.type = 'button';
-      button.className = 'filter-pill';
-      button.dataset.tag = tag;
-      button.textContent = label;
+  return button;
+}
 
-      button.addEventListener('click', () => {
-        activeTag = tag;
-        categorySelect.value = tag;
-        updateFilterStyles();
-        renderDocuments();
-      });
 
-      return button;
-    }
+function updateFilterStyles() {
 
-    function updateFilterStyles() {
-      document.querySelectorAll('.filter-pill').forEach(button => {
+  document
+    .querySelectorAll(
+      '.filter-pill'
+    )
+    .forEach(
+      button => {
+
         button.classList.toggle(
           'active',
-          button.dataset.tag === activeTag
+          button.dataset.tag ===
+            activeTag
         );
-      });
-    }
 
-    function getFilteredDocuments() {
-      const query = searchInput.value
-        .trim()
-        .toLowerCase();
+      }
+    );
 
-      return allDocuments.filter(doc => {
-        const tags = doc.tags || [];
+}
 
-        const tagMatch =
-          !activeTag || tags.includes(activeTag);
 
-        const searchableText = [
+// ======================================================
+// SEARCH / DISPLAY
+// ======================================================
+
+function getFilteredDocuments() {
+
+  const query =
+    searchInput
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  return allDocuments.filter(
+    doc => {
+
+      const tags =
+        doc.tags || [];
+
+
+      const tagMatch =
+        !activeTag ||
+        tags.includes(
+          activeTag
+        );
+
+
+      const searchable =
+        [
           doc.name || '',
           doc.description || '',
           ...tags
@@ -569,109 +2184,1285 @@
           .join(' ')
           .toLowerCase();
 
-        const searchMatch =
-          !query || searchableText.includes(query);
 
-        return tagMatch && searchMatch;
-      });
+      const searchMatch =
+        !query ||
+        searchable.includes(
+          query
+        );
+
+
+      return (
+        tagMatch &&
+        searchMatch
+      );
+
     }
+  );
 
-    function renderDocuments() {
-      const documents = getFilteredDocuments();
+}
 
-      statusBox.style.display = 'none';
-      docsContainer.innerHTML = '';
 
-      resultsCount.textContent =
-        'Showing ' +
-        documents.length +
-        ' of ' +
-        allDocuments.length +
-        ' documents';
+// ======================================================
+// RENDER DOCUMENTS
+// ======================================================
 
-      if (!documents.length) {
-        docsContainer.innerHTML = `
-          <div class="status-box empty-state">
-            No documents match your current search or filter.
-          </div>
-        `;
-        return;
+function renderDocuments() {
+
+  const documents =
+    getFilteredDocuments();
+
+
+  statusBox.style.display =
+    'none';
+
+
+  docsContainer.innerHTML =
+    '';
+
+
+  resultsCount.textContent =
+    'Showing ' +
+    documents.length +
+    ' of ' +
+    allDocuments.length +
+    ' documents';
+
+
+  if (!documents.length) {
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+    empty.className =
+      'status-box empty-state';
+
+    empty.textContent =
+      'No documents match your current search or filter.';
+
+    docsContainer
+      .appendChild(
+        empty
+      );
+
+    return;
+
+  }
+
+
+  documents.forEach(
+    doc => {
+
+      const card =
+        document.createElement(
+          'article'
+        );
+
+      card.className =
+        'card';
+
+
+      const title =
+        document.createElement(
+          'h2'
+        );
+
+      title.className =
+        'card-title';
+
+      title.textContent =
+        doc.name || '';
+
+
+      const description =
+        document.createElement(
+          'p'
+        );
+
+      description.className =
+        'description';
+
+      description.textContent =
+        doc.description || '';
+
+
+      const tags =
+        document.createElement(
+          'div'
+        );
+
+      tags.className =
+        'tags';
+
+
+      (doc.tags || [])
+        .forEach(
+          tagText => {
+
+            const tag =
+              document.createElement(
+                'span'
+              );
+
+            tag.className =
+              'tag';
+
+            tag.dataset.tag =
+              tagText;
+
+            tag.textContent =
+              tagText;
+
+            tags.appendChild(
+              tag
+            );
+
+          }
+        );
+
+
+      const actions =
+        document.createElement(
+          'div'
+        );
+
+      actions.className =
+        'card-actions';
+
+
+      (doc.buttons || [])
+        .forEach(
+          buttonData => {
+
+            if (
+              !buttonData ||
+              !buttonData.url
+            ) {
+              return;
+            }
+
+
+            const button =
+              document.createElement(
+                'a'
+              );
+
+
+            button.className =
+              'doc-btn';
+
+            button.href =
+              buttonData.url;
+
+            button.target =
+              '_blank';
+
+            button.rel =
+              'noopener noreferrer';
+
+            button.textContent =
+              buttonData.label ||
+              'Open Link';
+
+
+            actions.appendChild(
+              button
+            );
+
+          }
+        );
+
+
+      card.appendChild(
+        title
+      );
+
+      card.appendChild(
+        description
+      );
+
+      card.appendChild(
+        tags
+      );
+
+      card.appendChild(
+        actions
+      );
+
+
+      if (adminMode) {
+
+        const controls =
+          document.createElement(
+            'div'
+          );
+
+        controls.className =
+          'admin-card-controls';
+
+
+        const editButton =
+          document.createElement(
+            'button'
+          );
+
+        editButton.type =
+          'button';
+
+        editButton.className =
+          'edit-card-btn';
+
+        editButton.textContent =
+          '✎ Edit';
+
+
+        editButton.addEventListener(
+          'click',
+          () =>
+            openEditor(doc)
+        );
+
+
+        const deleteButton =
+          document.createElement(
+            'button'
+          );
+
+        deleteButton.type =
+          'button';
+
+        deleteButton.className =
+          'delete-card-btn';
+
+        deleteButton.textContent =
+          'Delete';
+
+
+        deleteButton.addEventListener(
+          'click',
+          () =>
+            deleteDocument(doc)
+        );
+
+
+        controls.appendChild(
+          editButton
+        );
+
+        controls.appendChild(
+          deleteButton
+        );
+
+
+        card.appendChild(
+          controls
+        );
+
       }
 
-      documents.forEach(doc => {
-        const card = document.createElement('article');
-        card.className = 'card';
 
-        const title = document.createElement('h2');
-        title.className = 'card-title';
-        title.textContent = doc.name || '';
+      docsContainer
+        .appendChild(
+          card
+        );
 
-        const description = document.createElement('p');
-        description.className = 'description';
-        description.textContent = doc.description || '';
+    }
+  );
 
-        const tags = document.createElement('div');
-        tags.className = 'tags';
+}
 
-        (doc.tags || []).forEach(tagText => {
-          const tag = document.createElement('span');
-          tag.className = 'tag';
-          tag.dataset.tag = tagText;
-          tag.textContent = tagText;
-          tags.appendChild(tag);
-        });
 
-        const actions = document.createElement('div');
-        actions.className = 'card-actions';
+// ======================================================
+// ADMIN DISPLAY
+// ======================================================
 
-        (doc.buttons || []).forEach(buttonData => {
-          if (!buttonData || !buttonData.url) return;
+function updateAdminDisplay() {
 
-          const button = document.createElement('a');
-          button.className = 'doc-btn';
-          button.href = buttonData.url;
-          button.target = '_blank';
-          button.rel = 'noopener noreferrer';
-          button.textContent =
-            buttonData.label || 'Open Link';
+  adminToolbar
+    .classList
+    .toggle(
+      'visible',
+      adminMode
+    );
 
-          actions.appendChild(button);
-        });
 
-        card.appendChild(title);
-        card.appendChild(description);
-        card.appendChild(tags);
-        card.appendChild(actions);
+  adminBtn
+    .classList
+    .toggle(
+      'active',
+      adminMode
+    );
 
-        docsContainer.appendChild(card);
+
+  adminBtn.textContent =
+    adminMode
+      ? '🔒 Exit Admin'
+      : '⚙ Admin';
+
+}
+
+
+// ======================================================
+// LOGIN
+// ======================================================
+
+function openLogin() {
+
+  loginMessage.textContent =
+    '';
+
+  passwordInput.value =
+    '';
+
+  loginBackdrop
+    .classList
+    .add('visible');
+
+  document.body
+    .classList
+    .add('modal-open');
+
+
+  setTimeout(
+    () =>
+      passwordInput.focus(),
+    100
+  );
+
+}
+
+
+function closeLogin() {
+
+  loginBackdrop
+    .classList
+    .remove('visible');
+
+  document.body
+    .classList
+    .remove('modal-open');
+
+}
+
+
+async function loginAdmin(
+  password
+) {
+
+  loginMessage.textContent =
+    'Checking password...';
+
+
+  try {
+
+    const data =
+      await apiPost({
+        action: 'login',
+        password: password
       });
+
+
+    if (!data.success) {
+
+      loginMessage.textContent =
+        data.error ||
+        'Unable to log in.';
+
+      return;
+
     }
 
-    searchInput.addEventListener('input', renderDocuments);
 
-    categorySelect.addEventListener('change', () => {
-      activeTag = categorySelect.value;
-      updateFilterStyles();
-      renderDocuments();
-    });
+    adminToken =
+      data.token;
 
-    adminBtn.addEventListener('click', () => {
-      alert(
-        'Admin Mode is the next step. The public directory is working first.'
+
+    sessionStorage.setItem(
+      'mcsmaAdminToken',
+      adminToken
+    );
+
+
+    adminMode =
+      true;
+
+
+    closeLogin();
+
+    updateAdminDisplay();
+
+    renderDocuments();
+
+
+  } catch (error) {
+
+    loginMessage.textContent =
+      error.message;
+
+  }
+
+}
+
+
+// ======================================================
+// LOGOUT
+// ======================================================
+
+async function logoutAdmin() {
+
+  const token =
+    adminToken;
+
+
+  adminToken = '';
+
+  adminMode = false;
+
+
+  sessionStorage.removeItem(
+    'mcsmaAdminToken'
+  );
+
+
+  updateAdminDisplay();
+
+  renderDocuments();
+
+
+  if (token) {
+
+    try {
+
+      await apiPost({
+        action: 'logout',
+        token: token
+      });
+
+    } catch (error) {
+
+      console.warn(error);
+
+    }
+
+  }
+
+}
+
+
+// ======================================================
+// DOCUMENT EDITOR
+// ======================================================
+
+function buildTagCheckboxes(
+  selectedTags = []
+) {
+
+  tagCheckboxes.innerHTML =
+    '';
+
+
+  const tags =
+    getAllTags();
+
+
+  tags.forEach(
+    tag => {
+
+      const label =
+        document.createElement(
+          'label'
+        );
+
+      label.className =
+        'tag-option';
+
+
+      const checkbox =
+        document.createElement(
+          'input'
+        );
+
+      checkbox.type =
+        'checkbox';
+
+      checkbox.value =
+        tag;
+
+      checkbox.checked =
+        selectedTags.includes(
+          tag
+        );
+
+
+      const text =
+        document.createElement(
+          'span'
+        );
+
+      text.textContent =
+        tag;
+
+
+      label.appendChild(
+        checkbox
       );
-    });
 
-    function escapeHtml(value) {
-      return String(value ?? '')
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
+      label.appendChild(
+        text
+      );
+
+
+      tagCheckboxes
+        .appendChild(
+          label
+        );
+
+    }
+  );
+
+}
+
+
+function openEditor(
+  doc = null
+) {
+
+  editorMessage.textContent =
+    '';
+
+
+  documentId.value =
+    doc
+      ? doc.id || ''
+      : '';
+
+
+  documentName.value =
+    doc
+      ? doc.name || ''
+      : '';
+
+
+  documentDescription.value =
+    doc
+      ? doc.description || ''
+      : '';
+
+
+  editorTitle.textContent =
+    doc
+      ? 'Edit Document'
+      : 'Add Document';
+
+
+  buildTagCheckboxes(
+    doc
+      ? doc.tags || []
+      : []
+  );
+
+
+  buttonsEditor.innerHTML =
+    '';
+
+
+  if (
+    doc &&
+    Array.isArray(
+      doc.buttons
+    ) &&
+    doc.buttons.length
+  ) {
+
+    doc.buttons.forEach(
+      button =>
+        addButtonEditorRow(
+          button
+        )
+    );
+
+  } else {
+
+    addButtonEditorRow();
+
+  }
+
+
+  editorBackdrop
+    .classList
+    .add('visible');
+
+  document.body
+    .classList
+    .add('modal-open');
+
+
+  setTimeout(
+    () =>
+      documentName.focus(),
+    100
+  );
+
+}
+
+
+function closeEditor() {
+
+  editorBackdrop
+    .classList
+    .remove('visible');
+
+  document.body
+    .classList
+    .remove('modal-open');
+
+}
+
+
+// ======================================================
+// BUTTON EDITOR
+// ======================================================
+
+function addButtonEditorRow(
+  button = {}
+) {
+
+  const row =
+    document.createElement(
+      'div'
+    );
+
+  row.className =
+    'button-editor-row';
+
+
+  const labelInput =
+    document.createElement(
+      'input'
+    );
+
+  labelInput.type =
+    'text';
+
+  labelInput.className =
+    'form-control button-label';
+
+  labelInput.placeholder =
+    'Button label';
+
+  labelInput.value =
+    button.label || '';
+
+
+  const urlInput =
+    document.createElement(
+      'input'
+    );
+
+  urlInput.type =
+    'url';
+
+  urlInput.className =
+    'form-control button-url';
+
+  urlInput.placeholder =
+    'https://...';
+
+  urlInput.value =
+    button.url || '';
+
+
+  const removeButton =
+    document.createElement(
+      'button'
+    );
+
+  removeButton.type =
+    'button';
+
+  removeButton.className =
+    'remove-link-btn';
+
+  removeButton.textContent =
+    '×';
+
+
+  removeButton.addEventListener(
+    'click',
+    () => row.remove()
+  );
+
+
+  row.appendChild(
+    labelInput
+  );
+
+  row.appendChild(
+    urlInput
+  );
+
+  row.appendChild(
+    removeButton
+  );
+
+
+  buttonsEditor
+    .appendChild(
+      row
+    );
+
+}
+
+
+// ======================================================
+// SAVE DOCUMENT
+// ======================================================
+
+async function saveDocumentFromForm() {
+
+  const name =
+    documentName
+      .value
+      .trim();
+
+
+  if (!name) {
+
+    editorMessage.textContent =
+      'Please enter a document name.';
+
+    return;
+
+  }
+
+
+  const selectedTags =
+    Array.from(
+      tagCheckboxes
+        .querySelectorAll(
+          'input[type="checkbox"]:checked'
+        )
+    )
+    .map(
+      checkbox =>
+        checkbox.value
+    );
+
+
+  const buttons = [];
+
+
+  buttonsEditor
+    .querySelectorAll(
+      '.button-editor-row'
+    )
+    .forEach(
+      row => {
+
+        const label =
+          row
+            .querySelector(
+              '.button-label'
+            )
+            .value
+            .trim();
+
+
+        const url =
+          row
+            .querySelector(
+              '.button-url'
+            )
+            .value
+            .trim();
+
+
+        if (
+          label &&
+          url
+        ) {
+
+          buttons.push({
+            label: label,
+            url: url
+          });
+
+        }
+
+      }
+    );
+
+
+  const doc = {
+
+    id:
+      documentId.value,
+
+    name:
+      name,
+
+    description:
+      documentDescription
+        .value
+        .trim(),
+
+    tags:
+      selectedTags,
+
+    buttons:
+      buttons
+
+  };
+
+
+  showSaving(
+    'Saving document...'
+  );
+
+
+  try {
+
+    const data =
+      await apiPost({
+
+        action:
+          'saveDocument',
+
+        token:
+          adminToken,
+
+        document:
+          doc
+
+      });
+
+
+    if (
+      data.sessionExpired
+    ) {
+
+      handleExpiredSession();
+
+      return;
+
     }
 
-    loadDocuments();
-  </script>
+
+    if (!data.success) {
+
+      throw new Error(
+        data.error ||
+        'Unable to save document.'
+      );
+
+    }
+
+
+    closeEditor();
+
+    await loadDocuments();
+
+
+  } catch (error) {
+
+    editorMessage.textContent =
+      error.message;
+
+  } finally {
+
+    hideSaving();
+
+  }
+
+}
+
+
+// ======================================================
+// DELETE DOCUMENT
+// ======================================================
+
+async function deleteDocument(
+  doc
+) {
+
+  const confirmed =
+    window.confirm(
+      'Delete "' +
+      doc.name +
+      '"?\n\n' +
+      'This will remove it from the MCSMA Documents Directory.'
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  showSaving(
+    'Deleting document...'
+  );
+
+
+  try {
+
+    const data =
+      await apiPost({
+
+        action:
+          'deleteDocument',
+
+        token:
+          adminToken,
+
+        id:
+          doc.id
+
+      });
+
+
+    if (
+      data.sessionExpired
+    ) {
+
+      handleExpiredSession();
+
+      return;
+
+    }
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.error ||
+        'Unable to delete document.'
+      );
+
+    }
+
+
+    await loadDocuments();
+
+
+  } catch (error) {
+
+    alert(
+      'Unable to delete document.\n\n' +
+      error.message
+    );
+
+  } finally {
+
+    hideSaving();
+
+  }
+
+}
+
+
+// ======================================================
+// SESSION EXPIRED
+// ======================================================
+
+function handleExpiredSession() {
+
+  adminToken = '';
+
+  adminMode = false;
+
+
+  sessionStorage.removeItem(
+    'mcsmaAdminToken'
+  );
+
+
+  updateAdminDisplay();
+
+  renderDocuments();
+
+  closeEditor();
+
+  hideSaving();
+
+
+  alert(
+    'Your Admin session expired. Please log in again.'
+  );
+
+
+  openLogin();
+
+}
+
+
+// ======================================================
+// SAVING OVERLAY
+// ======================================================
+
+function showSaving(
+  message
+) {
+
+  savingOverlay.textContent =
+    message || 'Saving...';
+
+  savingOverlay
+    .classList
+    .add('visible');
+
+}
+
+
+function hideSaving() {
+
+  savingOverlay
+    .classList
+    .remove('visible');
+
+}
+
+
+// ======================================================
+// EVENTS
+// ======================================================
+
+searchInput.addEventListener(
+  'input',
+  renderDocuments
+);
+
+
+categorySelect.addEventListener(
+  'change',
+  () => {
+
+    activeTag =
+      categorySelect.value;
+
+    updateFilterStyles();
+
+    renderDocuments();
+
+  }
+);
+
+
+adminBtn.addEventListener(
+  'click',
+  () => {
+
+    if (adminMode) {
+
+      logoutAdmin();
+
+    } else {
+
+      openLogin();
+
+    }
+
+  }
+);
+
+
+addDocumentBtn.addEventListener(
+  'click',
+  () =>
+    openEditor()
+);
+
+
+loginForm.addEventListener(
+  'submit',
+  event => {
+
+    event.preventDefault();
+
+    loginAdmin(
+      passwordInput.value
+    );
+
+  }
+);
+
+
+documentForm.addEventListener(
+  'submit',
+  event => {
+
+    event.preventDefault();
+
+    saveDocumentFromForm();
+
+  }
+);
+
+
+document.getElementById(
+  'addLinkBtn'
+)
+.addEventListener(
+  'click',
+  () =>
+    addButtonEditorRow()
+);
+
+
+document.getElementById(
+  'closeLoginBtn'
+)
+.addEventListener(
+  'click',
+  closeLogin
+);
+
+
+document.getElementById(
+  'cancelLoginBtn'
+)
+.addEventListener(
+  'click',
+  closeLogin
+);
+
+
+document.getElementById(
+  'closeEditorBtn'
+)
+.addEventListener(
+  'click',
+  closeEditor
+);
+
+
+document.getElementById(
+  'cancelEditorBtn'
+)
+.addEventListener(
+  'click',
+  closeEditor
+);
+
+
+loginBackdrop.addEventListener(
+  'click',
+  event => {
+
+    if (
+      event.target ===
+      loginBackdrop
+    ) {
+      closeLogin();
+    }
+
+  }
+);
+
+
+editorBackdrop.addEventListener(
+  'click',
+  event => {
+
+    if (
+      event.target ===
+      editorBackdrop
+    ) {
+      closeEditor();
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  'keydown',
+  event => {
+
+    if (
+      event.key !==
+      'Escape'
+    ) {
+      return;
+    }
+
+
+    if (
+      editorBackdrop
+        .classList
+        .contains(
+          'visible'
+        )
+    ) {
+
+      closeEditor();
+
+      return;
+
+    }
+
+
+    if (
+      loginBackdrop
+        .classList
+        .contains(
+          'visible'
+        )
+    ) {
+
+      closeLogin();
+
+    }
+
+  }
+);
+
+
+// ======================================================
+// SAFETY
+// ======================================================
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value ?? ''
+  )
+    .replaceAll(
+      '&',
+      '&amp;'
+    )
+    .replaceAll(
+      '<',
+      '&lt;'
+    )
+    .replaceAll(
+      '>',
+      '&gt;'
+    )
+    .replaceAll(
+      '"',
+      '&quot;'
+    )
+    .replaceAll(
+      "'",
+      '&#039;'
+    );
+
+}
+
+
+// ======================================================
+// START
+// ======================================================
+
+loadDocuments();
+
+</script>
 
 </body>
+
 </html>
