@@ -3,41 +3,36 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1"
+>
 
-  <title>
-    MCSMA Documents Directory
-  </title>
+<title>MCSMA Documents Directory</title>
 
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
 
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  >
-
+<link
+  href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Open+Sans:wght@400;600;700&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 
 :root {
   --brand: #004a99;
   --brand-dark: #003b7a;
-  --brand-light: #eaf1f9;
   --action: #28a745;
 
   --bg: #f4f7fb;
@@ -95,9 +90,9 @@ body.modal-open {
 }
 
 
-/* ==================================
+/* ========================================
    HEADER
-================================== */
+======================================== */
 
 .hero {
   background:
@@ -155,7 +150,8 @@ body.modal-open {
 
 
 .hero h1 {
-  margin: 0 0 6px;
+  margin:
+    0 0 6px;
 
   font-family:
     "Lato",
@@ -231,17 +227,16 @@ body.modal-open {
 
 
 .admin-btn.active {
-  background:
-    #ffffff;
+  background: white;
 
   color:
     var(--brand);
 }
 
 
-/* ==================================
+/* ========================================
    CONTROLS
-================================== */
+======================================== */
 
 .controls-wrap {
   max-width: 1200px;
@@ -249,9 +244,7 @@ body.modal-open {
   margin: 0 auto;
 
   padding:
-    28px
-    24px
-    0;
+    28px 24px 0;
 }
 
 
@@ -336,24 +329,17 @@ body.modal-open {
   padding:
     8px 13px;
 
-  font-size:
-    12px;
+  font-size: 12px;
 
   font-weight: 700;
 }
 
 
-.filter-pill:hover {
-  background:
-    #dfe8f2;
-}
-
-
 .filter-pill.active {
-  color: white;
-
   background:
     var(--brand);
+
+  color: white;
 }
 
 
@@ -378,9 +364,9 @@ body.modal-open {
 }
 
 
-/* ==================================
+/* ========================================
    ADMIN TOOLBAR
-================================== */
+======================================== */
 
 .admin-toolbar {
   display: none;
@@ -435,15 +421,9 @@ body.modal-open {
 }
 
 
-.add-btn:hover {
-  filter:
-    brightness(0.95);
-}
-
-
-/* ==================================
+/* ========================================
    DIRECTORY
-================================== */
+======================================== */
 
 .directory {
   max-width: 1200px;
@@ -451,9 +431,7 @@ body.modal-open {
   margin: 0 auto;
 
   padding:
-    18px
-    24px
-    50px;
+    18px 24px 50px;
 }
 
 
@@ -476,12 +454,7 @@ body.modal-open {
 
   border:
     1px solid
-    rgba(
-      219,
-      227,
-      236,
-      0.95
-    );
+    var(--border);
 
   border-radius: 16px;
 
@@ -496,27 +469,6 @@ body.modal-open {
     column;
 
   min-height: 240px;
-
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
-
-  position: relative;
-}
-
-
-.card:hover {
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 16px 34px
-    rgba(
-      21,
-      48,
-      78,
-      0.11
-    );
 }
 
 
@@ -531,8 +483,7 @@ body.modal-open {
   color:
     #063d79;
 
-  font-size:
-    20px;
+  font-size: 20px;
 
   line-height: 1.2;
 
@@ -560,23 +511,18 @@ body.modal-open {
   gap: 6px;
 
   margin:
-    15px 0
-    18px;
+    15px 0 18px;
 }
 
 
 .tag {
-  display:
-    inline-block;
-
   border-radius:
     999px;
 
   padding:
     5px 10px;
 
-  font-size:
-    10px;
+  font-size: 10px;
 
   font-weight: 700;
 
@@ -589,56 +535,38 @@ body.modal-open {
 
 
 .tag[data-tag="Teachers"] {
-  background:
-    #d9f0ff;
-
-  color:
-    #0063a6;
+  background: #d9f0ff;
+  color: #0063a6;
 }
 
 
 .tag[data-tag="Directors"] {
-  background:
-    #dcf5df;
-
-  color:
-    #20733c;
+  background: #dcf5df;
+  color: #20733c;
 }
 
 
 .tag[data-tag="Solo Festival"] {
-  background:
-    #ffe0df;
-
-  color:
-    #a63131;
+  background: #ffe0df;
+  color: #a63131;
 }
 
 
 .tag[data-tag="Board Members"] {
-  background:
-    #fff0be;
-
-  color:
-    #7b5a00;
+  background: #fff0be;
+  color: #7b5a00;
 }
 
 
 .tag[data-tag="Ensemble Coordinators"] {
-  background:
-    #e8defa;
-
-  color:
-    #6541a7;
+  background: #e8defa;
+  color: #6541a7;
 }
 
 
 .tag[data-tag="General"] {
-  background:
-    #edf0f4;
-
-  color:
-    #566575;
+  background: #edf0f4;
+  color: #566575;
 }
 
 
@@ -662,8 +590,7 @@ body.modal-open {
 
   gap: 6px;
 
-  text-decoration:
-    none;
+  text-decoration: none;
 
   background:
     var(--brand);
@@ -681,20 +608,14 @@ body.modal-open {
 }
 
 
-.doc-btn:hover {
-  background:
-    var(--brand-dark);
-}
-
-
 .doc-btn::before {
   content: "↗";
 }
 
 
-/* ==================================
-   ADMIN CARD BUTTONS
-================================== */
+/* ========================================
+   ADMIN CARD CONTROLS
+======================================== */
 
 .admin-card-controls {
   display: flex;
@@ -735,12 +656,6 @@ body.modal-open {
 }
 
 
-.edit-card-btn:hover {
-  background:
-    #d9e8f7;
-}
-
-
 .delete-card-btn {
   background:
     var(--danger-bg);
@@ -750,19 +665,12 @@ body.modal-open {
 }
 
 
-.delete-card-btn:hover {
-  background:
-    #ffe0e0;
-}
-
-
-/* ==================================
+/* ========================================
    STATUS
-================================== */
+======================================== */
 
 .status-box {
-  text-align:
-    center;
+  text-align: center;
 
   padding:
     36px 16px;
@@ -770,8 +678,7 @@ body.modal-open {
   color:
     var(--muted);
 
-  background:
-    white;
+  background: white;
 
   border:
     1px solid
@@ -787,9 +694,9 @@ body.modal-open {
 }
 
 
-/* ==================================
+/* ========================================
    MODALS
-================================== */
+======================================== */
 
 .modal-backdrop {
   position: fixed;
@@ -806,11 +713,9 @@ body.modal-open {
 
   display: none;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 
   padding: 20px;
 
@@ -826,10 +731,11 @@ body.modal-open {
 .modal {
   background: white;
 
-  width: min(
-    620px,
-    100%
-  );
+  width:
+    min(
+      620px,
+      100%
+    );
 
   max-height:
     calc(
@@ -901,8 +807,6 @@ body.modal-open {
 
   color:
     #6b7785;
-
-  line-height: 1;
 }
 
 
@@ -941,21 +845,6 @@ body.modal-open {
 }
 
 
-.form-control:focus {
-  border-color:
-    var(--brand);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(
-      0,
-      74,
-      153,
-      0.08
-    );
-}
-
-
 textarea.form-control {
   min-height: 100px;
 
@@ -979,8 +868,7 @@ textarea.form-control {
 .tag-option {
   display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
   gap: 8px;
 
@@ -1003,8 +891,7 @@ textarea.form-control {
 .buttons-editor {
   display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
   gap: 10px;
 }
@@ -1112,9 +999,10 @@ textarea.form-control {
 }
 
 
-.primary-btn:hover {
-  background:
-    var(--brand-dark);
+.primary-btn:disabled {
+  opacity: 0.65;
+
+  cursor: wait;
 }
 
 
@@ -1129,6 +1017,10 @@ textarea.form-control {
   min-height: 18px;
 }
 
+
+/* ========================================
+   LOADING
+======================================== */
 
 .saving-overlay {
   position: fixed;
@@ -1163,16 +1055,15 @@ textarea.form-control {
 }
 
 
-/* ==================================
+/* ========================================
    FOOTER
-================================== */
+======================================== */
 
 .footer {
   text-align: center;
 
   padding:
-    0 20px
-    26px;
+    0 20px 26px;
 
   font-size: 11px;
 
@@ -1181,100 +1072,60 @@ textarea.form-control {
 }
 
 
-/* ==================================
-   RESPONSIVE
-================================== */
+/* ========================================
+   MOBILE
+======================================== */
 
-@media (
-  max-width: 800px
-) {
+@media (max-width: 800px) {
 
   .search-row {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
 
-
   #docs {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
 
 }
 
 
-@media (
-  max-width: 560px
-) {
+@media (max-width: 560px) {
 
   .hero {
     padding:
       24px 18px;
   }
 
-
-  .hero-inner {
-    align-items:
-      flex-start;
-  }
-
-
   .hero h1 {
     font-size: 32px;
   }
 
-
   .controls-wrap,
   .directory,
   .admin-toolbar {
-    padding-left:
-      14px;
-
-    padding-right:
-      14px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
-
 
   .card {
     padding: 18px;
-
     min-height: auto;
   }
 
-
   .meta-row {
-    flex-direction:
-      column;
-
-    align-items:
-      flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
-
 
   .tag-checkbox-grid {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
-
 
   .button-editor-row {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
-
 
   .remove-link-btn {
-    width: 100%;
-  }
-
-
-  .modal-actions {
-    flex-direction:
-      column-reverse;
-  }
-
-
-  .modal-actions button {
     width: 100%;
   }
 
@@ -1287,10 +1138,6 @@ textarea.form-control {
 
 <body>
 
-
-<!-- ==================================
-     HEADER
-================================== -->
 
 <header class="hero">
 
@@ -1322,10 +1169,6 @@ textarea.form-control {
 </header>
 
 
-
-<!-- ==================================
-     SEARCH / FILTERS
-================================== -->
 
 <section class="controls-wrap">
 
@@ -1375,10 +1218,6 @@ textarea.form-control {
 
 
 
-<!-- ==================================
-     ADMIN TOOLBAR
-================================== -->
-
 <div
   id="adminToolbar"
   class="admin-toolbar"
@@ -1400,10 +1239,6 @@ textarea.form-control {
 </div>
 
 
-
-<!-- ==================================
-     DOCUMENTS
-================================== -->
 
 <main class="directory">
 
@@ -1427,9 +1262,7 @@ textarea.form-control {
 
 
 
-<!-- ==================================
-     LOGIN MODAL
-================================== -->
+<!-- LOGIN -->
 
 <div
   id="loginBackdrop"
@@ -1440,11 +1273,9 @@ textarea.form-control {
 
     <div class="modal-header">
 
-      <div>
-        <h2 class="modal-title">
-          Admin Access
-        </h2>
-      </div>
+      <h2 class="modal-title">
+        Admin Access
+      </h2>
 
 
       <button
@@ -1496,6 +1327,7 @@ textarea.form-control {
 
 
         <button
+          id="loginSubmitBtn"
           class="primary-btn"
           type="submit"
         >
@@ -1512,9 +1344,7 @@ textarea.form-control {
 
 
 
-<!-- ==================================
-     DOCUMENT EDITOR
-================================== -->
+<!-- DOCUMENT EDITOR -->
 
 <div
   id="editorBackdrop"
@@ -1525,14 +1355,12 @@ textarea.form-control {
 
     <div class="modal-header">
 
-      <div>
-        <h2
-          id="editorTitle"
-          class="modal-title"
-        >
-          Add Document
-        </h2>
-      </div>
+      <h2
+        id="editorTitle"
+        class="modal-title"
+      >
+        Add Document
+      </h2>
 
 
       <button
@@ -1659,10 +1487,6 @@ textarea.form-control {
 
 
 
-<!-- ==================================
-     SAVING
-================================== -->
-
 <div
   id="savingOverlay"
   class="saving-overlay"
@@ -1680,6 +1504,10 @@ textarea.form-control {
 
 const API_URL =
   'https://script.google.com/macros/s/AKfycbx6zKGU-z1aFXEm1tpkPlx-qcVcscc8_4yEkPgSDDHUGQHFwfp83-eSY33b3kt4XnQ_QA/exec';
+
+
+const BROWSER_CACHE_KEY =
+  'mcsmaDocuments_v2';
 
 
 const DEFAULT_TAGS = [
@@ -1707,6 +1535,8 @@ let adminToken =
 
 let adminMode =
   Boolean(adminToken);
+
+let backendWarmPromise = null;
 
 
 // ======================================================
@@ -1758,7 +1588,6 @@ const addDocumentBtn =
     'addDocumentBtn'
   );
 
-
 const loginBackdrop =
   document.getElementById(
     'loginBackdrop'
@@ -1779,6 +1608,10 @@ const loginMessage =
     'loginMessage'
   );
 
+const loginSubmitBtn =
+  document.getElementById(
+    'loginSubmitBtn'
+  );
 
 const editorBackdrop =
   document.getElementById(
@@ -1825,7 +1658,6 @@ const editorMessage =
     'editorMessage'
   );
 
-
 const savingOverlay =
   document.getElementById(
     'savingOverlay'
@@ -1833,7 +1665,44 @@ const savingOverlay =
 
 
 // ======================================================
-// API
+// BACKEND PRE-WARM
+// ======================================================
+
+function warmBackend() {
+
+  if (backendWarmPromise) {
+    return backendWarmPromise;
+  }
+
+
+  backendWarmPromise =
+    fetch(
+      API_URL +
+      '?action=ping&_=' +
+      Date.now(),
+      {
+        cache: 'no-store'
+      }
+    )
+    .catch(() => null)
+    .finally(() => {
+
+      setTimeout(
+        () => {
+          backendWarmPromise = null;
+        },
+        30000
+      );
+
+    });
+
+
+  return backendWarmPromise;
+}
+
+
+// ======================================================
+// POST API
 // ======================================================
 
 async function apiPost(data) {
@@ -1873,17 +1742,146 @@ async function apiPost(data) {
 
 
 // ======================================================
+// BROWSER CACHE
+// ======================================================
+
+function loadBrowserCache() {
+
+  const cached =
+    localStorage.getItem(
+      BROWSER_CACHE_KEY
+    );
+
+
+  if (!cached) {
+    return false;
+  }
+
+
+  try {
+
+    const documents =
+      JSON.parse(cached);
+
+
+    if (
+      !Array.isArray(documents)
+    ) {
+      return false;
+    }
+
+
+    allDocuments =
+      documents;
+
+
+    sortDocuments();
+
+    buildFilters();
+
+    updateAdminDisplay();
+
+    renderDocuments();
+
+
+    return true;
+
+
+  } catch (error) {
+
+    localStorage.removeItem(
+      BROWSER_CACHE_KEY
+    );
+
+    return false;
+
+  }
+
+}
+
+
+function saveBrowserCache() {
+
+  try {
+
+    localStorage.setItem(
+      BROWSER_CACHE_KEY,
+      JSON.stringify(
+        allDocuments
+      )
+    );
+
+  } catch (error) {
+
+    console.warn(
+      'Unable to save browser cache.',
+      error
+    );
+
+  }
+
+}
+
+
+// ======================================================
+// SORT
+// ======================================================
+
+function sortDocuments() {
+
+  allDocuments.sort(
+    (a, b) =>
+      String(
+        a.name || ''
+      ).localeCompare(
+        String(
+          b.name || ''
+        ),
+        undefined,
+        {
+          sensitivity: 'base'
+        }
+      )
+  );
+
+}
+
+
+// ======================================================
 // LOAD DOCUMENTS
 // ======================================================
 
 async function loadDocuments() {
 
+  // FIRST:
+  // Show cached documents immediately.
+  const hadBrowserCache =
+    loadBrowserCache();
+
+
+  if (!hadBrowserCache) {
+
+    statusBox.style.display =
+      'block';
+
+    statusBox.textContent =
+      'Loading MCSMA documents...';
+
+  }
+
+
+  // SECOND:
+  // Fetch current data quietly.
   try {
 
     const response =
       await fetch(
         API_URL +
-        '?action=documents'
+        '?action=documents&_=' +
+        Date.now(),
+        {
+          cache: 'no-store'
+        }
       );
 
 
@@ -1919,22 +1917,9 @@ async function loadDocuments() {
         : [];
 
 
-    allDocuments.sort(
-      (a, b) =>
-        String(
-          a.name || ''
-        ).localeCompare(
-          String(
-            b.name || ''
-          ),
-          undefined,
-          {
-            sensitivity:
-              'base'
-          }
-        )
-    );
+    sortDocuments();
 
+    saveBrowserCache();
 
     buildFilters();
 
@@ -1948,19 +1933,24 @@ async function loadDocuments() {
     console.error(error);
 
 
-    statusBox.style.display =
-      'block';
+    // If cached documents are already showing,
+    // do NOT wipe them out just because
+    // Google's refresh was slow/offline.
+    if (!hadBrowserCache) {
 
+      statusBox.style.display =
+        'block';
 
-    statusBox.innerHTML =
-      '<strong>Unable to load documents.</strong><br><br>' +
-      escapeHtml(
-        error.message
-      );
+      statusBox.innerHTML =
+        '<strong>Unable to load documents.</strong><br><br>' +
+        escapeHtml(
+          error.message
+        );
 
+      resultsCount.textContent =
+        'Unable to load directory';
 
-    resultsCount.textContent =
-      'Unable to load directory';
+    }
 
   }
 
@@ -1968,7 +1958,7 @@ async function loadDocuments() {
 
 
 // ======================================================
-// FILTERS
+// TAGS / FILTERS
 // ======================================================
 
 function getAllTags() {
@@ -1996,6 +1986,7 @@ function getAllTags() {
       (a, b) =>
         a.localeCompare(b)
     );
+
 }
 
 
@@ -2017,23 +2008,19 @@ function buildFilters() {
           'option'
         );
 
-      option.value =
-        tag;
+      option.value = tag;
 
-      option.textContent =
-        tag;
+      option.textContent = tag;
 
-      categorySelect
-        .appendChild(
-          option
-        );
+      categorySelect.appendChild(
+        option
+      );
 
     }
   );
 
 
-  filterRow.innerHTML =
-    '';
+  filterRow.innerHTML = '';
 
 
   filterRow.appendChild(
@@ -2058,7 +2045,7 @@ function buildFilters() {
         ).length;
 
 
-      if (count === 0) {
+      if (!count) {
         return;
       }
 
@@ -2078,6 +2065,7 @@ function buildFilters() {
 
 
   updateFilterStyles();
+
 }
 
 
@@ -2092,25 +2080,21 @@ function createFilterPill(
     );
 
 
-  button.type =
-    'button';
+  button.type = 'button';
 
   button.className =
     'filter-pill';
 
-  button.dataset.tag =
-    tag;
+  button.dataset.tag = tag;
 
-  button.textContent =
-    label;
+  button.textContent = label;
 
 
   button.addEventListener(
     'click',
     () => {
 
-      activeTag =
-        tag;
+      activeTag = tag;
 
       categorySelect.value =
         tag;
@@ -2124,6 +2108,7 @@ function createFilterPill(
 
 
   return button;
+
 }
 
 
@@ -2149,7 +2134,7 @@ function updateFilterStyles() {
 
 
 // ======================================================
-// SEARCH / DISPLAY
+// SEARCH
 // ======================================================
 
 function getFilteredDocuments() {
@@ -2204,7 +2189,7 @@ function getFilteredDocuments() {
 
 
 // ======================================================
-// RENDER DOCUMENTS
+// RENDER
 // ======================================================
 
 function renderDocuments() {
@@ -2242,10 +2227,9 @@ function renderDocuments() {
     empty.textContent =
       'No documents match your current search or filter.';
 
-    docsContainer
-      .appendChild(
-        empty
-      );
+    docsContainer.appendChild(
+      empty
+    );
 
     return;
 
@@ -2349,7 +2333,6 @@ function renderDocuments() {
                 'a'
               );
 
-
             button.className =
               'doc-btn';
 
@@ -2375,21 +2358,13 @@ function renderDocuments() {
         );
 
 
-      card.appendChild(
-        title
-      );
+      card.appendChild(title);
 
-      card.appendChild(
-        description
-      );
+      card.appendChild(description);
 
-      card.appendChild(
-        tags
-      );
+      card.appendChild(tags);
 
-      card.appendChild(
-        actions
-      );
+      card.appendChild(actions);
 
 
       if (adminMode) {
@@ -2417,7 +2392,6 @@ function renderDocuments() {
         editButton.textContent =
           '✎ Edit';
 
-
         editButton.addEventListener(
           'click',
           () =>
@@ -2439,7 +2413,6 @@ function renderDocuments() {
         deleteButton.textContent =
           'Delete';
 
-
         deleteButton.addEventListener(
           'click',
           () =>
@@ -2455,7 +2428,6 @@ function renderDocuments() {
           deleteButton
         );
 
-
         card.appendChild(
           controls
         );
@@ -2463,10 +2435,9 @@ function renderDocuments() {
       }
 
 
-      docsContainer
-        .appendChild(
-          card
-        );
+      docsContainer.appendChild(
+        card
+      );
 
     }
   );
@@ -2516,13 +2487,26 @@ function openLogin() {
   passwordInput.value =
     '';
 
+  loginSubmitBtn.disabled =
+    false;
+
+  loginSubmitBtn.textContent =
+    'Unlock Admin Mode';
+
+
   loginBackdrop
     .classList
     .add('visible');
 
+
   document.body
     .classList
     .add('modal-open');
+
+
+  // Ping Google while the admin
+  // is typing the password.
+  warmBackend();
 
 
   setTimeout(
@@ -2552,10 +2536,36 @@ async function loginAdmin(
 ) {
 
   loginMessage.textContent =
-    'Checking password...';
+    'Verifying admin access...';
+
+
+  loginSubmitBtn.disabled =
+    true;
+
+
+  loginSubmitBtn.textContent =
+    'Checking...';
 
 
   try {
+
+    // If a warm-up request is still happening,
+    // give it a brief chance to finish first.
+    if (backendWarmPromise) {
+
+      await Promise.race([
+        backendWarmPromise,
+        new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              1500
+            )
+        )
+      ]);
+
+    }
+
 
     const data =
       await apiPost({
@@ -2585,8 +2595,7 @@ async function loginAdmin(
     );
 
 
-    adminMode =
-      true;
+    adminMode = true;
 
 
     closeLogin();
@@ -2600,6 +2609,14 @@ async function loginAdmin(
 
     loginMessage.textContent =
       error.message;
+
+  } finally {
+
+    loginSubmitBtn.disabled =
+      false;
+
+    loginSubmitBtn.textContent =
+      'Unlock Admin Mode';
 
   }
 
@@ -2652,7 +2669,7 @@ async function logoutAdmin() {
 
 
 // ======================================================
-// DOCUMENT EDITOR
+// EDITOR
 // ======================================================
 
 function buildTagCheckboxes(
@@ -2663,64 +2680,59 @@ function buildTagCheckboxes(
     '';
 
 
-  const tags =
-    getAllTags();
+  getAllTags()
+    .forEach(
+      tag => {
+
+        const label =
+          document.createElement(
+            'label'
+          );
+
+        label.className =
+          'tag-option';
 
 
-  tags.forEach(
-    tag => {
+        const checkbox =
+          document.createElement(
+            'input'
+          );
 
-      const label =
-        document.createElement(
-          'label'
+        checkbox.type =
+          'checkbox';
+
+        checkbox.value =
+          tag;
+
+        checkbox.checked =
+          selectedTags.includes(
+            tag
+          );
+
+
+        const text =
+          document.createElement(
+            'span'
+          );
+
+        text.textContent =
+          tag;
+
+
+        label.appendChild(
+          checkbox
         );
 
-      label.className =
-        'tag-option';
-
-
-      const checkbox =
-        document.createElement(
-          'input'
+        label.appendChild(
+          text
         );
 
-      checkbox.type =
-        'checkbox';
-
-      checkbox.value =
-        tag;
-
-      checkbox.checked =
-        selectedTags.includes(
-          tag
-        );
-
-
-      const text =
-        document.createElement(
-          'span'
-        );
-
-      text.textContent =
-        tag;
-
-
-      label.appendChild(
-        checkbox
-      );
-
-      label.appendChild(
-        text
-      );
-
-
-      tagCheckboxes
-        .appendChild(
+        tagCheckboxes.appendChild(
           label
         );
 
-    }
-  );
+      }
+    );
 
 }
 
@@ -2794,16 +2806,10 @@ function openEditor(
     .classList
     .add('visible');
 
+
   document.body
     .classList
     .add('modal-open');
-
-
-  setTimeout(
-    () =>
-      documentName.focus(),
-    100
-  );
 
 }
 
@@ -2908,16 +2914,15 @@ function addButtonEditorRow(
   );
 
 
-  buttonsEditor
-    .appendChild(
-      row
-    );
+  buttonsEditor.appendChild(
+    row
+  );
 
 }
 
 
 // ======================================================
-// SAVE DOCUMENT
+// SAVE
 // ======================================================
 
 async function saveDocumentFromForm() {
@@ -3062,6 +3067,13 @@ async function saveDocumentFromForm() {
 
     closeEditor();
 
+
+    // Force fresh data after edit.
+    localStorage.removeItem(
+      BROWSER_CACHE_KEY
+    );
+
+
     await loadDocuments();
 
 
@@ -3080,7 +3092,7 @@ async function saveDocumentFromForm() {
 
 
 // ======================================================
-// DELETE DOCUMENT
+// DELETE
 // ======================================================
 
 async function deleteDocument(
@@ -3144,6 +3156,11 @@ async function deleteDocument(
     }
 
 
+    localStorage.removeItem(
+      BROWSER_CACHE_KEY
+    );
+
+
     await loadDocuments();
 
 
@@ -3164,7 +3181,7 @@ async function deleteDocument(
 
 
 // ======================================================
-// SESSION EXPIRED
+// SESSION EXPIRATION
 // ======================================================
 
 function handleExpiredSession() {
@@ -3251,6 +3268,21 @@ categorySelect.addEventListener(
 
 
 adminBtn.addEventListener(
+  'mouseenter',
+  warmBackend
+);
+
+
+adminBtn.addEventListener(
+  'touchstart',
+  warmBackend,
+  {
+    passive: true
+  }
+);
+
+
+adminBtn.addEventListener(
   'click',
   () => {
 
@@ -3301,123 +3333,55 @@ documentForm.addEventListener(
 );
 
 
-document.getElementById(
-  'addLinkBtn'
-)
-.addEventListener(
-  'click',
-  () =>
-    addButtonEditorRow()
-);
+document
+  .getElementById(
+    'addLinkBtn'
+  )
+  .addEventListener(
+    'click',
+    () =>
+      addButtonEditorRow()
+  );
 
 
-document.getElementById(
-  'closeLoginBtn'
-)
-.addEventListener(
-  'click',
-  closeLogin
-);
+document
+  .getElementById(
+    'closeLoginBtn'
+  )
+  .addEventListener(
+    'click',
+    closeLogin
+  );
 
 
-document.getElementById(
-  'cancelLoginBtn'
-)
-.addEventListener(
-  'click',
-  closeLogin
-);
+document
+  .getElementById(
+    'cancelLoginBtn'
+  )
+  .addEventListener(
+    'click',
+    closeLogin
+  );
 
 
-document.getElementById(
-  'closeEditorBtn'
-)
-.addEventListener(
-  'click',
-  closeEditor
-);
+document
+  .getElementById(
+    'closeEditorBtn'
+  )
+  .addEventListener(
+    'click',
+    closeEditor
+  );
 
 
-document.getElementById(
-  'cancelEditorBtn'
-)
-.addEventListener(
-  'click',
-  closeEditor
-);
-
-
-loginBackdrop.addEventListener(
-  'click',
-  event => {
-
-    if (
-      event.target ===
-      loginBackdrop
-    ) {
-      closeLogin();
-    }
-
-  }
-);
-
-
-editorBackdrop.addEventListener(
-  'click',
-  event => {
-
-    if (
-      event.target ===
-      editorBackdrop
-    ) {
-      closeEditor();
-    }
-
-  }
-);
-
-
-document.addEventListener(
-  'keydown',
-  event => {
-
-    if (
-      event.key !==
-      'Escape'
-    ) {
-      return;
-    }
-
-
-    if (
-      editorBackdrop
-        .classList
-        .contains(
-          'visible'
-        )
-    ) {
-
-      closeEditor();
-
-      return;
-
-    }
-
-
-    if (
-      loginBackdrop
-        .classList
-        .contains(
-          'visible'
-        )
-    ) {
-
-      closeLogin();
-
-    }
-
-  }
-);
+document
+  .getElementById(
+    'cancelEditorBtn'
+  )
+  .addEventListener(
+    'click',
+    closeEditor
+  );
 
 
 // ======================================================
@@ -3459,6 +3423,11 @@ function escapeHtml(
 // START
 // ======================================================
 
+// Start waking Google immediately.
+warmBackend();
+
+// Show cached documents instantly,
+// then refresh them in the background.
 loadDocuments();
 
 </script>
